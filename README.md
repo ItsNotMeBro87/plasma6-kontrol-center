@@ -43,6 +43,7 @@ and Nobara, openSUSE Tumbleweed and Leap 16, Debian 13, KDE neon, Kubuntu 25.04 
 2. Click **Download New Plasma Widget...** from **Get New...** option.
 3. Search for "Kontrol Center" and install it.
 4. Restart Plasma or log out and log back in to your session.
+5. Right-click the panel, **Add or Manage Widgets...**, and add **Kontrol Center**.
 
 ### B. Via the `.plasmoid` file
 
