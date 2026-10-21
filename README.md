@@ -3,13 +3,13 @@
 <img width="64" height="64" alt="kc-gear" src="https://github.com/user-attachments/assets/0cb46fcd-2633-4d42-9686-adb37b6849da" />
 
 # Kontrol Center
+A fully configurable control center widget for the KDE Plasma 6 panel. You decide which parts exist, how they look, and in which order.
 
 </div>
 
 <img width="1920" height="1080" alt="Kontrol Center - KDE Plasma Control Center" src="https://github.com/user-attachments/assets/274d1903-365a-4a8d-9fef-a672cbeb7c07" />
 
 ## Control Center for KDE Plasma 6
-A fully configurable control center widget for the KDE Plasma 6 panel. You decide which parts exist, how they look, and in which order.
 
 ## Features
 
@@ -196,9 +196,13 @@ Right-click the widget and choose **Configure Kontrol Center...**.
 > **Security note.** Custom buttons run the commands you type, as your user. Only use commands you understand
 > and trust. Profiles saved by other people can contain such commands, so read them before loading them.
 
-## Screenshots and Demo
+## Demo and Screenshots
 
-https://github.com/user-attachments/assets/f87e8320-4205-4fd2-a319-9c9f1a9a6967
+
+https://github.com/user-attachments/assets/0e99da14-9b41-4eb9-ad5a-564da76f599d
+
+
+<img width="431" height="618" alt="kontrol center SS" src="https://github.com/user-attachments/assets/b1f5c63e-af09-4095-8b2c-cd6e1093b991" />
 <img width="1511" height="1312" alt="config colors" src="https://github.com/user-attachments/assets/cefe39c7-fa49-4114-9b5c-6f21e499bb9d" /> <img width="1603" height="1401" alt="config buttons" src="https://github.com/user-attachments/assets/8b1c14c9-88dd-47f9-a8dc-2d6b5cf29a93" />
 
 
@@ -222,7 +226,7 @@ https://github.com/user-attachments/assets/f87e8320-4205-4fd2-a319-9c9f1a9a6967
 - **It is vibe-coded.** The code was written with Claude (an AI assistant), guided and tested by one person
   on one setup (CachyOS with Plasma 6). Expect rough edges, and read the code before you trust it with
   anything important.
-- **It may not be updated.** The author has a busy schedule, so fixes and new features are not promised.
+- **It may not be updated.** The author may be busy, so fixes and new features are not promised.
 - **Beta software.** Settings and file formats may change between versions.
 - Not tested on every distro, GPU, monitor or Plasma version. Plasma 5 is not supported.
 
