@@ -1,21 +1,21 @@
-# Kontrol Center for KDE Plasma 6
+<div align="center">
 
-A fully configurable control center widget for the KDE Plasma 6 panel: brightness for every screen, volume,
-Wi-Fi / Bluetooth / power / night-light toggles, your own script buttons, a color picker with history and a
-media banner. You decide which parts exist, how they look and in which order.
+<img width="64" height="64" alt="kc-gear" src="https://github.com/user-attachments/assets/0cb46fcd-2633-4d42-9686-adb37b6849da" />
 
-> **Beta (0.7.5).** Kontrol Center started as a personal project and is shared as-is. It is vibe-coded
-> with Claude. Please read [Limitations](#limitations) before you install it.
+# Kontrol Center
 
-<!-- Add a screenshot or two here, for example:  ![Kontrol Center](docs/screenshot.png) -->
+</div>
+
+<img width="1920" height="1080" alt="Kontrol Center - KDE Plasma Control Center" src="https://github.com/user-attachments/assets/274d1903-365a-4a8d-9fef-a672cbeb7c07" />
+
+## Control Center for KDE Plasma 6
+A fully configurable control center widget for the KDE Plasma 6 panel. You decide which parts exist, how they look, and in which order.
 
 ## Features
 
-- **Native Plasma widget.** Written in QML with small shell scripts. No web view, no Electron, no extra
-  daemon of its own, so it should stay light on memory. (It has not been benchmarked.)
-- **Brightness for every screen.** One bar per screen. Uses Plasma's own brightness service first, then
-  DDC/CI (`ddcutil`) for external monitors and `brightnessctl` for laptop panels.
-- **Volume slider** with a shortcut to the sound settings, and mouse-wheel support with a step you choose.
+- **Native Plasma widget.** Written in QML with small shell scripts, so it should stay light on memory.
+- **Brightness.** Control screen brightness for external monitors and laptops.
+- **Volume slider**
 - **Smart toggles.** Wi-Fi shows *Off / On / the network name*. Bluetooth shows *Off / On - Not connected /
   Connected (N devices)*. Also Power Profile, Do Not Disturb, Caffeine (keep awake), Night Light,
   Dark / Light mode, Airplane mode, Cloudflare WARP, Mic mute, screenshot and screen recording (Spectacle).
