@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0 http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+  <kcfgfile name=""/>
+  <group name="Appearance">
+    <entry name="panelIcon" type="String">
+      <default>kc-gear.svg</default>
+    </entry>
+    <entry name="panelIconKeepColors" type="Bool">
+      <default>true</default>
+    </entry>
+    <entry name="classicPopup" type="Bool">
+      <default>false</default>
+    </entry>
+    <entry name="panelRadius" type="Int">
+      <default>8</default>
+      <min>0</min>
+      <max>40</max>
+    </entry>
+    <entry name="panelColor" type="String">
+      <default>#292c30</default>
+    </entry>
+    <entry name="panelTransparent" type="Bool">
+      <default>false</default>
+    </entry>
+    <entry name="panelTransparency" type="Int">
+      <default>0</default>
+      <min>0</min>
+      <max>100</max>
+    </entry>
+    <entry name="sliderRadius" type="Int">
+      <default>8</default>
+      <min>0</min>
+      <max>30</max>
+    </entry>
+    <entry name="largeRadius" type="Int">
+      <default>8</default>
+      <min>0</min>
+      <max>30</max>
+    </entry>
+    <entry name="smallRadius" type="Int">
+      <default>24</default>
+      <min>0</min>
+      <max>30</max>
+    </entry>
+    <entry name="mediaRadius" type="Int">
+      <default>8</default>
+      <min>0</min>
+      <max>30</max>
+    </entry>
+    <entry name="offColor" type="String">
+      <default>#737373</default>
+    </entry>
+    <entry name="onColor" type="String">
+      <default>#448ee6</default>
+    </entry>
+    <entry name="useAccent" type="Bool">
+      <default>true</default>
+    </entry>
+    <entry name="useAccentOff" type="Bool">
+      <default>false</default>
+    </entry>
+    <entry name="followSystem" type="Bool">
+      <default>true</default>
+    </entry>
+    <entry name="offColorCustom" type="Bool">
+      <default>false</default>
+    </entry>
+    <entry name="showDate" type="Bool">
+      <default>true</default>
+    </entry>
+    <entry name="dateFormat" type="String">
+      <default>full</default>
+    </entry>
+    <entry name="showUptime" type="Bool">
+      <default>true</default>
+    </entry>
+    <entry name="panelBlur" type="Int">
+      <default>0</default>
+      <min>0</min>
+      <max>100</max>
+    </entry>
+    <entry name="blurKwin" type="Bool">
+      <default>false</default>
+    </entry>
+    <entry name="mediaColorMode" type="String">
+      <default>off</default>
+    </entry>
+    <entry name="mediaColor" type="String">
+      <default>#737373</default>
+    </entry>
+    <entry name="mediaShowIdle" type="Bool">
+      <default>false</default>
+    </entry>
+  </group>
+  <group name="Layout">
+    <entry name="sectionOrder" type="String">
+      <default>brightness,volume,large,small,media</default>
+    </entry>
+    <entry name="buttonsJson" type="String">
+      <default>[{"preset":"wifi","size":"large","label":"","icon":"","cmdOn":"","cmdOff":"","arg":"","uid":""},{"preset":"bluetooth","size":"large","label":"","icon":"","cmdOn":"","cmdOff":"","arg":"","uid":""},{"preset":"airplane","size":"large","label":"","icon":"","cmdOn":"","cmdOff":"","arg":"","uid":""},{"preset":"profile","size":"large","label":"","icon":"","cmdOn":"","cmdOff":"","arg":"","uid":""},{"preset":"dnd","size":"small","label":"","icon":"","cmdOn":"","cmdOff":"","arg":"","uid":""},{"preset":"caffeine","size":"small","label":"","icon":"","cmdOn":"","cmdOff":"","arg":"","uid":""},{"preset":"night","size":"small","label":"","icon":"","cmdOn":"","cmdOff":"","arg":"","uid":""},{"preset":"dark","size":"small","label":"","icon":"","cmdOn":"","cmdOff":"","arg":"","uid":""},{"preset":"mic","size":"small","label":"","icon":"","cmdOn":"","cmdOff":"","arg":"","uid":""},{"preset":"cloudflare","size":"small","label":"","icon":"","cmdOn":"","cmdOff":"","arg":"","uid":""},{"preset":"capture","size":"small","label":"","icon":"","cmdOn":"","cmdOff":"","arg":"","uid":""},{"preset":"record","size":"small","label":"","icon":"","cmdOn":"","cmdOff":"","arg":"","uid":""},{"preset":"picker","size":"small","label":"","icon":"","cmdOn":"","cmdOff":"","arg":"","uid":""},{"preset":"custom","size":"small","label":"Custom","icon":"terminal-2.svg","cmdOn":"notify-send 'Custom 1' 'ON'","cmdOff":"notify-send 'Custom 1' 'OFF'","arg":"","uid":"c1"},{"preset":"custom","size":"small","label":"Custom","icon":"terminal-2.svg","cmdOn":"notify-send 'Custom 2' 'ON'","cmdOff":"notify-send 'Custom 2' 'OFF'","arg":"","uid":"c2"}]</default>
+    </entry>
+    <entry name="wheelVolume" type="Int">
+      <default>2</default>
+      <min>1</min>
+      <max>20</max>
+    </entry>
+    <entry name="wheelBrightness" type="Int">
+      <default>5</default>
+      <min>1</min>
+      <max>25</max>
+    </entry>
+    <entry name="mprisMatch" type="String">
+      <default></default>
+    </entry>
+    <entry name="darkScheme" type="String">
+      <default>BreezeDark</default>
+    </entry>
+    <entry name="lightScheme" type="String">
+      <default>BreezeLight</default>
+    </entry>
+  </group>
+  <group name="State">
+    <entry name="customStates" type="String">
+      <default>{}</default>
+    </entry>
+    <entry name="pickerHistory" type="String">
+      <default>[]</default>
+    </entry>
+    <entry name="recentColors" type="String">
+      <default>[]</default>
+    </entry>
+  </group>
+</kcfg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="g" x1="6" y1="6" x2="58" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff5f6d"/>
+      <stop offset="0.35" stop-color="#ffc371"/>
+      <stop offset="0.65" stop-color="#2ed8a7"/>
+      <stop offset="1" stop-color="#4a8cff"/>
+    </linearGradient>
+    <linearGradient id="h" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8e54e9"/>
+      <stop offset="1" stop-color="#4776e6"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#g)" fill-rule="evenodd" d="M54.66 28.05 L60.87 29.27 L60.87 34.73 L54.66 35.95 L50.82 45.23 L54.34 50.49 L50.49 54.34 L45.23 50.82 L35.95 54.66 L34.73 60.87 L29.27 60.87 L28.05 54.66 L18.77 50.82 L13.51 54.34 L9.66 50.49 L13.18 45.23 L9.34 35.95 L3.13 34.73 L3.13 29.27 L9.34 28.05 L13.18 18.77 L9.66 13.51 L13.51 9.66 L18.77 13.18 L28.05 9.34 L29.27 3.13 L34.73 3.13 L35.95 9.34 L45.23 13.18 L50.49 9.66 L54.34 13.51 L50.82 18.77 Z M22 32 a10 10 0 1 0 20 0 a10 10 0 1 0 -20 0 Z"/>
+  <circle cx="32" cy="32" r="5.5" fill="url(#h)"/>
+</svg>
