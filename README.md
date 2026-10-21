@@ -37,7 +37,14 @@ and Nobara, openSUSE Tumbleweed and Leap 16, Debian 13, KDE neon, Kubuntu 25.04 
 
 ## Installation
 
-### A. Via the `.plasmoid` file
+### A. Via native Plasma desktop KDE Store **(RECOMMENDED)**
+
+1. Right-click on the Plasma bar, and choose **Add or Manage Widgets...**
+2. Click **Download New Plasma Widget...** from **Get New...** option.
+3. Search for "Kontrol Center" and install it.
+4. Restart Plasma or log out and log back in to your session.
+
+### B. Via the `.plasmoid` file
 
 1. Download `kontrol-center-0.7.5-beta.plasmoid` from the [Releases](../../releases) page.
 2. Install it, either from a terminal:
@@ -53,7 +60,7 @@ and Nobara, openSUSE Tumbleweed and Leap 16, Debian 13, KDE neon, Kubuntu 25.04 
 
 To update later, run the same command with `-u` instead of `-i`, then restart Plasma.
 
-### B. Install from the source
+### C. Install from the source
 
 ```bash
 git clone https://github.com/ItsNotMeBro87/plasma6-kontrol-center.git
