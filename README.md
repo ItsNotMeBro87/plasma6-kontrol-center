@@ -15,29 +15,14 @@ A fully configurable control center widget for the KDE Plasma 6 panel. You decid
 
 - **Native Plasma widget.** Written in QML with small shell scripts, so it should stay light on memory.
 - **Brightness.** Control screen brightness for external monitors and laptops.
-- **Volume slider**
-- **Smart toggles.** Wi-Fi shows *Off / On / the network name*. Bluetooth shows *Off / On - Not connected /
-  Connected (N devices)*. Also Power Profile, Do Not Disturb, Caffeine (keep awake), Night Light,
-  Dark / Light mode, Airplane mode, Cloudflare WARP, Mic mute, screenshot and screen recording (Spectacle).
-- **Color picker with history.** Pick any color on screen; the last colors appear as a slim row of
-  swatches. Click a swatch to copy its hex code.
-- **Your own buttons.** Add *Custom* buttons with an ON command and an OFF command, or give the built-in
-  Pen Display and Headset buttons your own toggle script.
-- **Media banner.** Works with any MPRIS player (Spotify, YouTube Music, Firefox, VLC, ...). You can limit
-  it to certain players, for example `ytm, spotify`.
-- **Custom layout.** Drag and drop the parts (brightness, volume, large buttons, small buttons, media
-  banner) into any order. Every part can be added **more than once**. Buttons can be large or small, and
-  can be reordered by drag and drop.
-- **Layout profiles.** Save the current layout and buttons under a name and load it again later. Profiles
-  are plain files on your PC, with no limit on how many.
-- **Custom shapes.** Separate corner radius for the panel, slider bars, large buttons, small buttons and
-  the media banner (from boxy to pill-shaped).
-- **Custom colors.** Choose colors yourself (36 quick swatches: recent, dark and light), follow your Plasma
-  accent color, or follow the system light / dark mode. Optional transparency and background blur.
-- **Header options.** Show or hide the day and date (10 international formats, including ISO 8601, European,
-  US and Japan/China/Korea) and the uptime.
-- **Your own panel icon.** A colorful gear by default; use any theme icon or SVG file. SVG colors are kept
-  on the panel.
+- **Volume slider.** Control the volume via click or scrollwheel.
+- **Prebuilt Smart Toggles.** Wi-Fi shows *Off / On / the network name*. Bluetooth shows *Off / On - Not connected /  Connected (N devices)*. Also Power Profile, Do Not Disturb, Caffeine (keep awake), Night Light, Dark / Light mode, Airplane mode, Cloudflare WARP, Mic, Color Picker, Screenshot and Screen Recording (Spectacle).
+- **Custom buttons.** Add *Custom* buttons with an ON command and an OFF command or your own toggle script.
+- **Media banner.** Works with any MPRIS player (Spotify, YouTube Music, Firefox, VLC, etc).
+- **Custom layout.** Drag and drop the parts (brightness, volume, large buttons, small buttons, media  banner) into any order and can be reordered by drag and drop.
+- **Layout profiles.** Save the current layout and buttons under a name and load it again later. Profiles  are plain files on your PC, with no limit on how many.
+- **Custom shapes.** Separate corner radius for the panel, slider bars, large buttons, small buttons and the media banner (from boxy to pill-shaped).
+- **Custom colors.** Choose colors yourself (36 quick swatches: recent, dark and light), or just follow your Plasma accent.
 
 ## Requirements
 
@@ -52,7 +37,7 @@ and Nobara, openSUSE Tumbleweed and Leap 16, Debian 13, KDE neon, Kubuntu 25.04 
 
 ## Installation
 
-### Option A - the `.plasmoid` file (easiest)
+### A. Via the `.plasmoid` file
 
 1. Download `kontrol-center-0.7.5-beta.plasmoid` from the [Releases](../../releases) page.
 2. Install it, either from a terminal:
@@ -63,13 +48,12 @@ and Nobara, openSUSE Tumbleweed and Leap 16, Debian 13, KDE neon, Kubuntu 25.04 
 
    or from the desktop: right-click the panel or desktop, **Add or Manage Widgets...**, **Get New...**,
    **Install Widget From Local File...**, and pick the file.
-3. Restart Plasma so it finds the widget: `kquitapp6 plasmashell; kstart plasmashell`
-   (or log out and in again).
+3. Restart Plasma so it finds the widget: `kquitapp6 plasmashell; kstart plasmashell` (or log out and in again).
 4. Right-click the panel, **Add or Manage Widgets...**, and add **Kontrol Center**.
 
 To update later, run the same command with `-u` instead of `-i`, then restart Plasma.
 
-### Option B - from the source (works on every distro)
+### B. Install from the source
 
 ```bash
 git clone https://github.com/ItsNotMeBro87/plasma6-kontrol-center.git
@@ -211,6 +195,12 @@ Right-click the widget and choose **Configure Kontrol Center...**.
 
 > **Security note.** Custom buttons run the commands you type, as your user. Only use commands you understand
 > and trust. Profiles saved by other people can contain such commands, so read them before loading them.
+
+## Screenshots and Demo
+
+https://github.com/user-attachments/assets/f87e8320-4205-4fd2-a319-9c9f1a9a6967 </
+<img width="1511" height="1312" alt="config colors" src="https://github.com/user-attachments/assets/cefe39c7-fa49-4114-9b5c-6f21e499bb9d" /> <img width="1603" height="1401" alt="config buttons" src="https://github.com/user-attachments/assets/8b1c14c9-88dd-47f9-a8dc-2d6b5cf29a93" />
+
 
 ## Troubleshooting
 
