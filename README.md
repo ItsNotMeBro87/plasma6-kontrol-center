@@ -198,7 +198,7 @@ Right-click the widget and choose **Configure Kontrol Center...**.
 
 ## Screenshots and Demo
 
-https://github.com/user-attachments/assets/f87e8320-4205-4fd2-a319-9c9f1a9a6967 </
+https://github.com/user-attachments/assets/f87e8320-4205-4fd2-a319-9c9f1a9a6967
 <img width="1511" height="1312" alt="config colors" src="https://github.com/user-attachments/assets/cefe39c7-fa49-4114-9b5c-6f21e499bb9d" /> <img width="1603" height="1401" alt="config buttons" src="https://github.com/user-attachments/assets/8b1c14c9-88dd-47f9-a8dc-2d6b5cf29a93" />
 
 
