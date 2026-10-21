@@ -242,7 +242,7 @@ Wayland, the Kontrol Center version, what you expected, what happened, and the o
 
 ## Credits and license
 
-- Written with Claude (Anthropic) by ItsNotMeBro87 (Agon A.). Version 0.7.5 Beta.
+- Written with Claude by ItsNotMeBro87. Version 0.7.5 Beta.
 - Button icons: [Tabler Icons](https://tabler.io/icons) (MIT) and Lucide (ISC), plus a few hand-drawn icons
   used as fallbacks. See [NOTICE.md](NOTICE.md).
 - Licensed under the **GNU General Public License v3.0 or later**. See [LICENSE](LICENSE). In short:
