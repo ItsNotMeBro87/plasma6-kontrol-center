@@ -19,3 +19,5 @@ Public License (the file LICENSE) for more details.
 - Lucide icons (fallbacks) - ISC License, Copyright (c) Lucide Contributors.
 
 Both licenses are permissive and can be combined with GPL-3.0-or-later; their copyright notices must stay.
+
+Icons added in 0.7.6 (keyboard, mouse, gamepad, phone, laptop, speaker, watch, printer, tv, eye, trash, refresh, chevrons, check, plug and others) are hand-written in the style of Lucide (ISC). install.sh replaces those whose names exist in Tabler Icons (MIT) with the Tabler version; kc-bluetooth.svg is never replaced.

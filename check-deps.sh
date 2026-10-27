@@ -5,13 +5,14 @@ req="nmcli:Wi-Fi button (NetworkManager)
 bluetoothctl:Bluetooth button (bluez)
 rfkill:Airplane button (rfkill)
 wpctl:Volume and mic (WirePlumber)
-pactl:Volume (PulseAudio tools / pipewire-pulse)
+pactl:Volume and Sound page (PulseAudio tools / pipewire-pulse, version 16+)
 notify-send:Notifications (libnotify)
 wl-copy:Copy colors to the clipboard (wl-clipboard)
 gdbus:Color picker (glib2 tools)
 kreadconfig6:Reads Plasma settings (Plasma 6)
 kwriteconfig6:Writes Plasma settings (Plasma 6)"
-opt="playerctl:Media banner
+opt="python3:Bluetooth pairing requests in the widget (also needs the gi module)
+playerctl:Media banner
 ddcutil:Brightness bars for external monitors
 brightnessctl:Brightness bar for laptop screens
 powerprofilesctl:Power Profile button
