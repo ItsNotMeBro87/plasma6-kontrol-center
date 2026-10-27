@@ -3,6 +3,7 @@
 <img width="64" height="64" alt="kc-gear" src="https://github.com/user-attachments/assets/0cb46fcd-2633-4d42-9686-adb37b6849da" />
 
 # Kontrol Center
+
 A fully configurable control center widget for the KDE Plasma 6 panel. You decide which parts exist, how they look, and in which order.
 
 </div>
@@ -16,13 +17,16 @@ A fully configurable control center widget for the KDE Plasma 6 panel. You decid
 - **Native Plasma widget.** Written in QML with small shell scripts, so it should stay light on memory.
 - **Brightness.** Control screen brightness for external monitors and laptops.
 - **Volume slider.** Control the volume via click or scrollwheel.
-- **Prebuilt Smart Toggles.** Wi-Fi shows *Off / On / the network name*. Bluetooth shows *Off / On - Not connected /  Connected (N devices)*. Also Power Profile, Do Not Disturb, Caffeine (keep awake), Night Light, Dark / Light mode, Airplane mode, Cloudflare WARP, Mic, Color Picker, Screenshot and Screen Recording (Spectacle).
+- **Prebuilt Smart Toggles.** Wi-Fi shows *Off / On / the network name*. Bluetooth shows *Off / On - Not connected / Connected (N devices)*. Also Power Profile, Do Not Disturb, Caffeine (keep awake), Night Light, Dark / Light mode, Airplane mode, Cloudflare WARP, Mic, Color Picker, Screenshot and Screen Recording (Spectacle). Airplane mode remembers whether Wi-Fi and Bluetooth were on and puts them back that way; after login, Wi-Fi, Bluetooth and Airplane mode return to how you last left them.
 - **Custom buttons.** Add *Custom* buttons with an ON command and an OFF command or your own toggle script.
-- **Media banner.** Works with any MPRIS player (Spotify, YouTube Music, Firefox, VLC, etc).
-- **Custom layout.** Drag and drop the parts (brightness, volume, large buttons, small buttons, media  banner) into any order and can be reordered by drag and drop.
-- **Layout profiles.** Save the current layout and buttons under a name and load it again later. Profiles  are plain files on your PC, with no limit on how many.
-- **Custom shapes.** Separate corner radius for the panel, slider bars, large buttons, small buttons and the media banner (from boxy to pill-shaped).
-- **Custom colors.** Choose colors yourself (36 quick swatches: recent, dark and light), or just follow your Plasma accent.
+- **Media banner.** Works with any MPRIS player (Spotify, YouTube Music, Firefox, VLC, etc). Its color can follow the album cover's accent, in a dark or a light shade.
+- **Long text scrolls.** Text that does not fit (a long network name, "On - Not connected", a song or album title ...) is cut with "..." and scrolls from right to left while the mouse is over it.
+- **Custom layout.** Drag and drop the parts (brightness, volume, large buttons, small buttons, media banner) into any order and can be reordered by drag and drop. If everything does not fit on the screen, scroll arrows appear.
+- **Layout profiles.** Save the layout only, or the layout with the current colors, under a name and load it again later. Profiles are plain files on your PC, with no limit on how many.
+- **Custom shapes.** Separate corner radius for the panel, slider bars, large buttons, small buttons and the media banner (from boxy to pill-shaped), a panel width you can change, and a **Scale** that enlarges or shrinks the whole widget.
+- **Custom colors.** Choose colors yourself (36 quick swatches: recent, dark and light), or just follow your Plasma accent. Optional border and shadow (with adjustable shadow blur) for the panel, buttons and banner, and text that stays readable on a see-through panel.
+- **Custom icons.** It comes packed with pre-built icons, but if you're not satisfied, you can customize and change them to your own liking.
+- **Languages.** The popup can be shown in English, Bahasa Indonesia, Deutsch, Español, Français, 日本語, Português, 한국어, Русский, 中文 (简体) or العربية (right-to-left). The translations were written by hand and by Claude, so wording may be off in places.
 
 ## Requirements
 
@@ -47,15 +51,14 @@ and Nobara, openSUSE Tumbleweed and Leap 16, Debian 13, KDE neon, Kubuntu 25.04 
 
 ### B. Via the `.plasmoid` file
 
-1. Download `kontrol-center-0.7.5-beta.plasmoid` from the [Releases](../../releases) page.
+1. Download `kontrol-center-0.7.7-beta.plasmoid` from the [Releases](https://github.com/ItsNotMeBro87/plasma6-kontrol-center/releases) page.
 2. Install it, either from a terminal:
 
    ```bash
-   kpackagetool6 -t Plasma/Applet -i kontrol-center-0.7.5-beta.plasmoid
+   kpackagetool6 -t Plasma/Applet -i kontrol-center-0.7.7-beta.plasmoid
    ```
 
-   or from the desktop: right-click the panel or desktop, **Add or Manage Widgets...**, **Get New...**,
-   **Install Widget From Local File...**, and pick the file.
+   or from the desktop: right-click the panel or desktop, **Add or Manage Widgets...**, **Get New...**, **Install Widget From Local File...**, and pick the file.
 3. Restart Plasma so it finds the widget: `kquitapp6 plasmashell; kstart plasmashell` (or log out and in again).
 4. Right-click the panel, **Add or Manage Widgets...**, and add **Kontrol Center**.
 
@@ -69,8 +72,7 @@ cd plasma6-kontrol-center
 ./install.sh
 ```
 
-`install.sh` also downloads the real [Tabler](https://tabler.io/icons) button icons (it needs `curl`). If
-that fails, the bundled icons are used, so it is optional.
+`install.sh` also downloads the real [Tabler](https://tabler.io/icons) button icons (it needs `curl`). If that fails, the bundled icons are used, so it is optional.
 
 ### Uninstall
 
@@ -88,10 +90,12 @@ Run `./check-deps.sh` (it is in this repository) to see what is missing on your 
 
 | Feature | Program | Typical package |
 |---|---|---|
-| Wi-Fi button | `nmcli` | NetworkManager |
-| Bluetooth button | `bluetoothctl` | bluez (bluez-utils on Arch) |
+| Wi-Fi button and page | `nmcli` | NetworkManager |
+| Bluetooth button and page | `bluetoothctl` | bluez (bluez-utils on Arch) |
+| Bluetooth pairing requests in the widget | `python3` with `gi` (PyGObject) | python-gobject / python3-gi |
 | Airplane button | `rfkill` | util-linux or rfkill |
 | Volume and mic | `wpctl`, `pactl` | WirePlumber, PipeWire-Pulse / PulseAudio tools |
+| Sound page | `pactl` 16 or newer (needs `--format=json`) | PipeWire-Pulse / PulseAudio tools |
 | Color picker, clipboard | `gdbus`, `wl-copy`, `notify-send` | glib2 tools, wl-clipboard, libnotify |
 | Brightness (external monitor) | `ddcutil` | ddcutil |
 | Brightness (laptop) | `brightnessctl` | brightnessctl |
@@ -101,7 +105,7 @@ Run `./check-deps.sh` (it is in this repository) to see what is missing on your 
 | Capture and Record | `spectacle` | Spectacle |
 | Settings shortcuts | `systemsettings` | System Settings |
 | Dark / Light, Night Light | `kreadconfig6`, `kwriteconfig6`, `plasma-apply-colorscheme` | part of Plasma 6 |
-| Optional | `python3` with `gi`, `kcolorchooser`, `iwgetid` | picker and Wi-Fi name fallbacks |
+| Optional | `kcolorchooser`, `iwgetid` | picker and Wi-Fi name fallbacks |
 | Optional | `warp-cli` | Cloudflare WARP (from Cloudflare's own repository) |
 
 ### Install the extras
@@ -171,18 +175,25 @@ sudo zypper install NetworkManager bluez wireplumber pipewire-pulseaudio pulseau
 
 Right-click the widget and choose **Configure Kontrol Center...**.
 
-**Appearance**
+**General**
 
 - **Widget icon:** the icon on your panel. Pick a theme icon or an SVG file. Keep **Keep the colors of an SVG
   icon** ticked for colorful icons, or untick it to tint a one-color SVG like your panel text.
-- **Panel:** corner radius, background (transparent, with an amount), and **Blur**. Blur needs the Blur
-  desktop effect (System Settings > Window Management > Desktop Effects). KWin has no per-widget blur
-  strength, so there is an optional checkbox that also sets KWin's global blur strength (this affects all
-  blurred windows, and is off by default).
-- **Button shapes:** separate corner radius for slider bars, large buttons, small buttons and the media banner.
-- **Colors:** every color field has swatches (12 recent, 12 dark, 12 light), a color dialog and a hex box.
-  You can follow the Plasma accent color or the system light / dark mode. With *follow system* on, only the
-  panel color is locked; the On and Off colors can still be chosen.
+- **Header:** show or hide the date, pick one of 10 date formats, show or hide the uptime.
+- **Language:** the language of the popup (default English; 11 languages). The settings windows stay in English.
+
+**Appearance**
+
+- **Panel:** corner radius, **width**, **scale** (enlarges or shrinks the whole widget, not only its width), colors, **transparency** (0 = solid), text and icon readability on a
+  see-through panel, **blur**, and an optional **border** and **shadow** with their own colors (a border width and a shadow blur). Blur needs the Blur desktop effect (System Settings > Window Management > Desktop Effects). KWin has no
+  per-widget blur strength, so there is an optional checkbox that also sets KWin's global blur strength (this
+  affects all blurred windows, and is off by default).
+- **Button Corner Radius:** separate radius for slider bars, large buttons, small buttons and the media banner.
+  The Wi-Fi, Bluetooth, Picker and Sound pages use the radius of the button that opened them.
+- **Button and Slider Colors:** On color, Off color, and optional border and shadow colors. Every color field has
+  swatches (12 recent, 12 dark, 12 light), a color dialog and a hex box. You can follow the Plasma accent color or
+  the system light / dark mode. With *follow system* on, only the panel color is locked.
+- **Media banner:** same as the off-state buttons, same as the lit buttons, **album cover accent - dark**, **album cover accent - light**, or a custom color; plus optional border and shadow.
 
 **Layout and Buttons**
 
@@ -194,15 +205,20 @@ Right-click the widget and choose **Configure Kontrol Center...**.
 - **Pen Display and Headset:** these are not in the default layout, but you can add them from the button
   list. Set **Toggle script** to a script of your own; for Pen Display also set the screen name (for example
   `HDMI-A-1`, as shown by `kscreen-doctor -o`). With an empty script they do nothing.
-- **Profiles:** save and load whole layouts under a name. Files live in
-  `~/.local/share/kontrol-center/profiles`.
-- **Header:** show or hide the date, pick one of 10 date formats, show or hide the uptime.
+- **Profiles:** save a layout under a name, either **layout only** or **layout with current colors**, and load
+  it again later. Files live in `~/.local/share/kontrol-center/profiles`.
 - **Behavior:** volume and brightness wheel step, media player filter (several players separated by commas,
   for example `ytm, spotify`; run `playerctl -l` to see the exact player names), and the Plasma color schemes
-  used by the Dark / Light button.
+  used by the Dark / Light button. Type the **name** of a color scheme for each mode (defaults: `BreezeDark`,
+  `BreezeLight`). Run `plasma-apply-colorscheme --list-schemes` to see the exact names of the schemes installed on
+  your PC, for example `BreezeClassic`, `Oxygen`, or third-party ones such as `Catppuccin-Mocha-Mauve`. A color
+  scheme only changes colors, not the application style, icons or Plasma theme. Kvantum is an application style,
+  not a color scheme, so it cannot be typed there, but many Kvantum themes ship matching KDE color schemes
+  (for example `KvantumDark`) that you can use.
 
 > **Security note.** Custom buttons run the commands you type, as your user. Only use commands you understand
 > and trust. Profiles saved by other people can contain such commands, so read them before loading them.
+
 
 ## Demo and Screenshots
 
@@ -225,6 +241,13 @@ https://github.com/user-attachments/assets/0e99da14-9b41-4eb9-ad5a-564da76f599d
   `bash ~/.local/share/plasma/plasmoids/org.kontrol.center/contents/scripts/picker.sh pick`
   in a terminal and include its output in an issue.
 - **Widget does not show up after installing:** restart Plasma (`kquitapp6 plasmashell; kstart plasmashell`).
+- **Wi-Fi page is empty:** run `bash ~/.local/share/plasma/plasmoids/org.kontrol.center/contents/scripts/wifi.sh list`.
+  Each line starting with `W|` is a network. No output means `nmcli` found no Wi-Fi device.
+- **Bluetooth page is empty or pairing requests do not show:** run the same with `bt.sh list`. Pairing requests
+  are shown in the widget only while the Bluetooth page is open and `python3` with `gi` is installed; otherwise
+  KDE's own pairing notification is used as usual.
+- **Sound page is empty:** run `pactl --format=json list sinks`. If that prints an error, your `pactl` is too old.
+- **Blur does nothing:** see the note under *Appearance*. A per-widget blur strength is not something KWin offers.
 
 ## Limitations
 
@@ -236,6 +259,11 @@ https://github.com/user-attachments/assets/0e99da14-9b41-4eb9-ad5a-564da76f599d
   anything important.
 - **It may not be updated.** The author may be busy, so fixes and new features are not promised.
 - **Beta software.** Settings and file formats may change between versions.
+- **The Wi-Fi, Bluetooth and Sound pages are new in 0.7.7** and have had the least testing. Bluetooth pairing
+  in particular depends on your BlueZ version and on KDE's own Bluetooth agent. If something breaks, please
+  open an issue with the output of the matching script (see Troubleshooting).
+- A Wi-Fi password is passed to `nmcli` on its command line for a moment (the standard way for scripts), so
+  another program running as the same user could see it during that moment.
 - Not tested on every distro, GPU, monitor or Plasma version. Plasma 5 is not supported.
 
 ## Issues
@@ -250,9 +278,9 @@ Wayland, the Kontrol Center version, what you expected, what happened, and the o
 
 ## Credits and license
 
-- Written with Claude by ItsNotMeBro87. Version 0.7.5 Beta.
-- Button icons: [Tabler Icons](https://tabler.io/icons) (MIT) and Lucide (ISC), plus a few hand-drawn icons
-  used as fallbacks. See [NOTICE.md](NOTICE.md).
+- Written with Claude by ItsNotMeBro87. Version 0.7.7 Beta.
+- Button icons: [Tabler Icons](https://tabler.io/icons) (MIT) and Lucide (ISC), plus a few hand-drawn icons used as fallbacks. See [NOTICE.md](NOTICE.md).
 - Licensed under the **GNU General Public License v3.0 or later**. See [LICENSE](LICENSE). In short:
   you can use, study, share and modify it, and if you share a modified version it must stay open source
   under the same license.
+
