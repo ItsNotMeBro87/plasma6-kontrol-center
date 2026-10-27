@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Effects
 import org.kde.kirigami as Kirigami
 
 // Slider bar: click or drag to set, mouse wheel to nudge. At 0 the filled bar disappears completely.
@@ -13,6 +14,7 @@ Rectangle {
     property bool iconClickable: false
     property bool dragging: false
     property real dragValue: 0
+    property color trackColor: theme.offColor
     readonly property real shown: dragging ? dragValue : value
     signal moved(real v)
     signal iconClicked()
@@ -20,12 +22,25 @@ Rectangle {
     Layout.fillWidth: true
     Layout.preferredHeight: 42
     radius: theme.sliderRadius
-    color: theme.offColor
-    clip: true
+    color: trackColor
+
+    // optional shadow (drawn behind the bar)
+    Rectangle { id: shSrc; anchors.fill: parent; radius: s.radius; color: s.trackColor; layer.enabled: true; visible: false }
+    MultiEffect {
+        z: -1
+        anchors.fill: shSrc
+        source: shSrc
+        visible: s.theme.btnShadowOn
+        shadowEnabled: s.theme.btnShadowOn
+        shadowColor: s.theme.btnShadowCol
+        shadowBlur: s.theme.btnShadowBlur
+        shadowOpacity: 0.75
+        shadowVerticalOffset: 2
+    }
 
     Rectangle {
         visible: s.shown > 0
-        width: Math.max(s.height, s.width * s.shown)
+        width: Math.min(s.width, Math.max(s.height, s.width * s.shown))
         height: s.height
         radius: s.radius
         color: s.theme.litColor
@@ -52,9 +67,18 @@ Rectangle {
         anchors.rightMargin: 12
         anchors.verticalCenter: parent.verticalCenter
     }
+    Rectangle {   // border on top, so it is not hidden by the filled part
+        anchors.fill: parent
+        radius: s.radius
+        color: "transparent"
+        border.width: s.theme.btnBorderW
+        border.color: s.theme.btnBorderCol
+        visible: s.theme.btnBorderW > 0
+    }
     MouseArea {
         anchors.fill: parent
         cursorShape: Qt.PointingHandCursor
+        preventStealing: true     // a scrolling panel must not take over a slider drag
         function update(mx) {
             var v = Math.max(0, Math.min(1, mx / s.width))
             if (v < 0.01) v = 0
@@ -68,6 +92,7 @@ Rectangle {
         }
         onPositionChanged: function(m) { if (s.dragging) update(m.x) }
         onReleased: s.dragging = false
+        onCanceled: s.dragging = false
         onWheel: function(w) {
             var dir = w.angleDelta.y > 0 ? 1 : (w.angleDelta.y < 0 ? -1 : 0)
             if (dir !== 0) {

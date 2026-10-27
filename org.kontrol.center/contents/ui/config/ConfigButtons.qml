@@ -17,18 +17,69 @@ KCMUtils.SimpleKCM {
     property int cfg_wheelVolumeDefault
     property int cfg_wheelBrightness
     property int cfg_wheelBrightnessDefault
-    property bool cfg_showDate
-    property bool cfg_showDateDefault
-    property string cfg_dateFormat
-    property string cfg_dateFormatDefault
-    property bool cfg_showUptime
-    property bool cfg_showUptimeDefault
     property string cfg_mprisMatch
     property string cfg_mprisMatchDefault
     property string cfg_darkScheme
     property string cfg_darkSchemeDefault
     property string cfg_lightScheme
     property string cfg_lightSchemeDefault
+
+    // colors a profile can carry along (same keys as the Appearance page)
+    property bool cfg_followSystem
+    property bool cfg_followSystemDefault
+    property string cfg_panelColor
+    property string cfg_panelColorDefault
+    property string cfg_onColor
+    property string cfg_onColorDefault
+    property string cfg_offColor
+    property string cfg_offColorDefault
+    property bool cfg_useAccent
+    property bool cfg_useAccentDefault
+    property bool cfg_useAccentOff
+    property bool cfg_useAccentOffDefault
+    property bool cfg_offColorCustom
+    property bool cfg_offColorCustomDefault
+    property string cfg_mediaColorMode
+    property string cfg_mediaColorModeDefault
+    property string cfg_mediaColor
+    property string cfg_mediaColorDefault
+    property bool cfg_panelBorder
+    property bool cfg_panelBorderDefault
+    property string cfg_panelBorderColor
+    property string cfg_panelBorderColorDefault
+    property int cfg_panelBorderWidth
+    property int cfg_panelBorderWidthDefault
+    property bool cfg_panelShadow
+    property bool cfg_panelShadowDefault
+    property string cfg_panelShadowColor
+    property string cfg_panelShadowColorDefault
+    property bool cfg_btnBorder
+    property bool cfg_btnBorderDefault
+    property string cfg_btnBorderColor
+    property string cfg_btnBorderColorDefault
+    property int cfg_btnBorderWidth
+    property int cfg_btnBorderWidthDefault
+    property bool cfg_btnShadow
+    property bool cfg_btnShadowDefault
+    property string cfg_btnShadowColor
+    property string cfg_btnShadowColorDefault
+    property bool cfg_mediaBorder
+    property bool cfg_mediaBorderDefault
+    property string cfg_mediaBorderColor
+    property string cfg_mediaBorderColorDefault
+    property int cfg_mediaBorderWidth
+    property int cfg_mediaBorderWidthDefault
+    property bool cfg_mediaShadow
+    property bool cfg_mediaShadowDefault
+    property string cfg_mediaShadowColor
+    property string cfg_mediaShadowColorDefault
+    property int cfg_panelShadowBlur
+    property int cfg_panelShadowBlurDefault
+    property int cfg_btnShadowBlur
+    property int cfg_btnShadowBlurDefault
+    property int cfg_mediaShadowBlur
+    property int cfg_mediaShadowBlurDefault
+    readonly property var colorKeys: ["panelShadowBlur", "btnShadowBlur", "mediaShadowBlur", "followSystem", "panelColor", "onColor", "offColor", "useAccent", "useAccentOff", "offColorCustom", "mediaColorMode", "mediaColor", "panelBorder", "panelBorderColor", "panelBorderWidth", "panelShadow", "panelShadowColor", "btnBorder", "btnBorderColor", "btnBorderWidth", "btnShadow", "btnShadowColor", "mediaBorder", "mediaBorderColor", "mediaBorderWidth", "mediaShadow", "mediaShadowColor"]
 
     readonly property string iconBase: Qt.resolvedUrl("../../icons/").toString()
 
@@ -308,18 +359,23 @@ KCMUtils.SimpleKCM {
                 if (i <= 0) return
                 var d = null
                 try { d = JSON.parse(Qt.atob(l.substring(i + 1))) } catch (e) { d = null }
-                a.push({ name: l.substring(0, i), valid: d !== null && d.buttonsJson !== undefined, data: d })
+                a.push({ name: l.substring(0, i), valid: d !== null && d.buttonsJson !== undefined, data: d, hasColors: d !== null && d.colors !== undefined })
             })
             profileList = a
         })
     }
-    function saveProfile() {
+    function saveProfile(withColors) {
         var n = cleanName(profileName)
         if (n === "") { profileMsg = "Type a name for the profile first."; return }
-        var data = { kontrolCenter: "layout-profile", version: 1, savedWith: "0.7.5 Beta",
+        var data = { kontrolCenter: "layout-profile", version: 2, savedWith: "0.7.7 Beta",
                      sectionOrder: cfg_sectionOrder, buttonsJson: cfg_buttonsJson }
+        if (withColors) {
+            var c = {}
+            colorKeys.forEach(function(k) { c[k] = page["cfg_" + k] })
+            data.colors = c
+        }
         pexec.run(pscript("save '" + n + "' '" + Qt.btoa(asciiJson(data)) + "'"), function() {
-            profileMsg = "Saved \"" + n + "\"."
+            profileMsg = "Saved \"" + n + "\"" + (withColors ? " (layout and colors)." : " (layout only).")
             profileName = ""
             refreshProfiles()
         })
@@ -328,17 +384,16 @@ KCMUtils.SimpleKCM {
         if (!entry.valid) { profileMsg = "That profile file could not be read."; return }
         cfg_buttonsJson = entry.data.buttonsJson
         cfg_sectionOrder = entry.data.sectionOrder || Presets.defaultOrder
+        if (entry.data.colors) {
+            colorKeys.forEach(function(k) { if (entry.data.colors[k] !== undefined) page["cfg_" + k] = entry.data.colors[k] })
+            if (page.cfg_mediaColorMode === "cover") page.cfg_mediaColorMode = "coverDark"   // profiles from 0.7.6
+        }
         loadAll()
-        profileMsg = "Loaded \"" + entry.name + "\". Press Apply to keep it."
+        profileMsg = "Loaded \"" + entry.name + "\"" + (entry.data.colors ? " (layout and colors)" : " (layout only)") + ". Press Apply to keep it."
     }
     function deleteProfile(n) {
         pexec.run(pscript("delete '" + n + "'"), function() { profileMsg = "Deleted \"" + n + "\"."; refreshProfiles() })
     }
-    function dateIndex() {
-        for (var i = 0; i < Presets.dateFormats.length; i++) if (Presets.dateFormats[i].id === cfg_dateFormat) return i
-        return 0
-    }
-
     // ------------------------------------------------------------------ UI
     ColumnLayout {
         spacing: Kirigami.Units.largeSpacing
@@ -558,7 +613,7 @@ KCMUtils.SimpleKCM {
         // ---------------- profiles ----------------
         Kirigami.Heading { level: 3; text: "Profiles" }
         QQC2.Label {
-            text: "Save the current layout and buttons under a name, and load it again later. Profiles are plain files in ~/.local/share/kontrol-center/profiles on this PC, and you can save as many as you like. Loading a profile replaces the current layout and buttons (press Apply to keep it)."
+            text: "Save the current layout and buttons under a name, and load it again later. You can save the layout only, or the layout together with the current colors (panel, button and banner colors, borders and shadows). Profiles are plain files in ~/.local/share/kontrol-center/profiles on this PC. Loading a profile replaces the current layout (and the colors, if the profile has them); press Apply to keep it. Colors are saved as they were last applied."
             wrapMode: Text.WordWrap
             opacity: 0.7
             Layout.maximumWidth: Kirigami.Units.gridUnit * 32
@@ -570,12 +625,17 @@ KCMUtils.SimpleKCM {
                 placeholderText: "Profile name"
                 text: page.profileName
                 onTextEdited: page.profileName = text
-                onAccepted: page.saveProfile()
+                onAccepted: page.saveProfile(false)
             }
             QQC2.Button {
-                text: "Save current layout"
+                text: "Save layout only"
                 icon.name: "document-save"
-                onClicked: page.saveProfile()
+                onClicked: page.saveProfile(false)
+            }
+            QQC2.Button {
+                text: "Save layout with current colors"
+                icon.name: "document-save-as"
+                onClicked: page.saveProfile(true)
             }
         }
         QQC2.Label { visible: page.profileMsg !== ""; text: page.profileMsg; opacity: 0.8 }
@@ -584,7 +644,7 @@ KCMUtils.SimpleKCM {
             model: page.profileList
             delegate: RowLayout {
                 spacing: Kirigami.Units.smallSpacing
-                QQC2.Label { text: modelData.name; Layout.preferredWidth: 220; elide: Text.ElideRight }
+                QQC2.Label { text: modelData.name + (modelData.hasColors ? "  (layout + colors)" : "  (layout)"); Layout.preferredWidth: 280; elide: Text.ElideRight }
                 QQC2.Button { text: "Load"; icon.name: "document-open"; enabled: modelData.valid; onClicked: page.loadProfile(modelData) }
                 QQC2.Button { icon.name: "edit-delete"; QQC2.ToolTip.visible: hovered; QQC2.ToolTip.text: "Delete this profile"; onClicked: page.deleteProfile(modelData.name) }
             }
@@ -592,30 +652,9 @@ KCMUtils.SimpleKCM {
 
         Kirigami.Separator { Layout.fillWidth: true }
 
-        // ---------------- header + behaviour ----------------
+        // ---------------- behaviour ----------------
         Kirigami.FormLayout {
             Layout.fillWidth: true
-            Kirigami.Separator { Kirigami.FormData.isSection: true; Kirigami.FormData.label: "Header (top left)" }
-            QQC2.CheckBox {
-                Kirigami.FormData.label: "Day and date:"
-                text: "Show"
-                checked: page.cfg_showDate
-                onToggled: page.cfg_showDate = checked
-            }
-            QQC2.ComboBox {
-                Kirigami.FormData.label: "Date format:"
-                enabled: page.cfg_showDate
-                Layout.preferredWidth: 360
-                model: Presets.dateFormats.map(function(f) { return f.label })
-                currentIndex: page.dateIndex()
-                onActivated: function(i) { page.cfg_dateFormat = Presets.dateFormats[i].id }
-            }
-            QQC2.CheckBox {
-                Kirigami.FormData.label: "Uptime:"
-                text: "Show under the date"
-                checked: page.cfg_showUptime
-                onToggled: page.cfg_showUptime = checked
-            }
             Kirigami.Separator { Kirigami.FormData.isSection: true; Kirigami.FormData.label: "Behavior" }
             QQC2.SpinBox {
                 Kirigami.FormData.label: "Volume wheel step (%):"
@@ -645,15 +684,24 @@ KCMUtils.SimpleKCM {
             }
             QQC2.TextField {
                 Kirigami.FormData.label: "Dark color scheme:"
-                Layout.preferredWidth: 200
+                Layout.preferredWidth: 260
+                placeholderText: "BreezeDark"
                 text: page.cfg_darkScheme
                 onEditingFinished: page.cfg_darkScheme = text
             }
             QQC2.TextField {
                 Kirigami.FormData.label: "Light color scheme:"
-                Layout.preferredWidth: 200
+                Layout.preferredWidth: 260
+                placeholderText: "BreezeLight"
                 text: page.cfg_lightScheme
                 onEditingFinished: page.cfg_lightScheme = text
+            }
+            QQC2.Label {
+                Kirigami.FormData.label: ""
+                text: "The Dark / Light button switches Plasma between two color schemes. Type the NAME of the scheme to use for each mode. The defaults are BreezeDark and BreezeLight, and you can change them to any color scheme installed on your PC.\n\nHow to find the exact names: open a terminal and run  plasma-apply-colorscheme --list-schemes  (the installed schemes are listed, and the one in use is marked). Type the name exactly as listed, without spaces added: for example  BreezeDark,  BreezeLight,  BreezeClassic,  Oxygen  or, if you installed third-party schemes,  Catppuccin-Mocha-Mauve,  Nordic,  Dracula.  You can also see the names in System Settings > Colors & Themes > Colors.\n\nA color scheme only changes colors. It does not change the application style, the icons or the Plasma theme, so the button does not switch those. Kvantum, for example, is an application style engine, not a color scheme, so it cannot be typed here. But many Kvantum themes ship matching KDE color schemes (look for names like KvantumDark in the list above); if one is installed you can use its name here, and it will recolor Plasma and KDE apps to match. If a name is wrong or empty, the button changes nothing."
+                wrapMode: Text.WordWrap
+                opacity: 0.7
+                Layout.maximumWidth: Kirigami.Units.gridUnit * 26
             }
         }
     }

@@ -9,11 +9,11 @@ KCMUtils.SimpleKCM {
         Kirigami.Separator { Kirigami.FormData.isSection: true; Kirigami.FormData.label: "Kontrol Center" }
         QQC2.Label {
             Kirigami.FormData.label: "Description:"
-            text: "A fully configurable control center for KDE Plasma: brightness for every screen, volume, network and system toggles, your own script buttons, a colour picker with history, and a media banner that works with any MPRIS player."
+            text: "A fully configurable control center for KDE Plasma: brightness for every screen, volume, network and system toggles, your own script buttons, a colour picker with history, Wi-Fi / Bluetooth / sound pages inside the panel, and a media banner that works with any MPRIS player."
             wrapMode: Text.WordWrap
             Layout.maximumWidth: Kirigami.Units.gridUnit * 26
         }
-        QQC2.Label { Kirigami.FormData.label: "Version:"; text: "0.7.5 Beta" }
+        QQC2.Label { Kirigami.FormData.label: "Version:"; text: "0.7.7 Beta" }
         QQC2.Label {
             Kirigami.FormData.label: "Author:"
             text: "ItsNotMeBro87 (Agon A.)"

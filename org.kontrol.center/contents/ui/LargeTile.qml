@@ -1,8 +1,11 @@
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Effects
 import org.kde.kirigami as Kirigami
 
-// Large button (WiFi, Bluetooth, Pen Display, Power Profile ...). Mouse wheel emits wheelMoved(+1/-1).
+// Large button (Wi-Fi, Bluetooth, Pen Display, Power Profile ...). Mouse wheel emits wheelMoved(+1/-1).
+// Buttons with a page of their own (Wi-Fi, Bluetooth, Picker) show an arrow on the right: the arrow zone and the
+// rest of the button are two separate click areas.
 Rectangle {
     id: w
     property var theme
@@ -23,7 +26,23 @@ Rectangle {
     readonly property color baseColor: active ? theme.litColor : theme.offColor
     readonly property color inkColor: active ? theme.textOnOn : theme.textOnOff
     color: main.pressed ? Qt.darker(baseColor, 1.08) : (main.containsMouse ? Qt.lighter(baseColor, 1.07) : baseColor)
+    border.width: theme.btnBorderW
+    border.color: theme.btnBorderCol
     Behavior on color { ColorAnimation { duration: 150 } }
+
+    // optional shadow (drawn behind the button)
+    Rectangle { id: shSrc; anchors.fill: parent; radius: w.radius; color: w.baseColor; layer.enabled: true; visible: false }
+    MultiEffect {
+        z: -1
+        anchors.fill: shSrc
+        source: shSrc
+        visible: w.theme.btnShadowOn
+        shadowEnabled: w.theme.btnShadowOn
+        shadowColor: w.theme.btnShadowCol
+        shadowBlur: w.theme.btnShadowBlur
+        shadowOpacity: 0.75
+        shadowVerticalOffset: 2
+    }
 
     RowLayout {
         anchors.fill: parent
@@ -40,22 +59,22 @@ Rectangle {
         ColumnLayout {
             Layout.fillWidth: true
             spacing: 0
-            Text {
+            MarqueeText {
                 text: w.label
                 color: w.inkColor
                 font.pixelSize: 15
                 font.bold: true
                 Layout.fillWidth: true
-                elide: Text.ElideRight
+                forceHover: main.containsMouse
             }
-            Text {
+            MarqueeText {
                 visible: w.sub !== ""
                 text: w.sub
                 color: w.inkColor
                 font.pixelSize: 12
                 font.bold: true
                 Layout.fillWidth: true
-                elide: Text.ElideRight
+                forceHover: main.containsMouse
             }
         }
         Kirigami.Icon {
@@ -63,6 +82,7 @@ Rectangle {
             source: w.chevronSource
             isMask: true
             color: w.inkColor
+            opacity: zone.containsMouse ? 1.0 : 0.8
             Layout.preferredWidth: 22
             Layout.preferredHeight: 22
         }
@@ -78,12 +98,14 @@ Rectangle {
             wh.accepted = true
         }
     }
-    MouseArea {   // arrow zone
+    MouseArea {   // arrow zone: opens the page (sits on top of the main area, so a click lands in exactly one of them)
+        id: zone
         visible: w.showChevron
         width: 46
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.bottom: parent.bottom
+        hoverEnabled: true
         cursorShape: Qt.PointingHandCursor
         onClicked: w.chevronClicked()
     }

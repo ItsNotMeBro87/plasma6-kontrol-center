@@ -24,7 +24,7 @@ PlasmaCore.Dialog {
 
     mainItem: Item {
         id: holder
-        readonly property real pad: dlg.frameMode ? 0 : 8   // keeps the panel off the screen edge / bar
+        readonly property real pad: dlg.frameMode ? 0 : 8 + (dlg.ctl ? dlg.ctl.theme.shadowPad : 0)   // keeps the panel off the screen edge / bar (and leaves room for a shadow)
 
         implicitWidth: ld.implicitWidth + 2 * pad
         implicitHeight: ld.implicitHeight + 2 * pad
