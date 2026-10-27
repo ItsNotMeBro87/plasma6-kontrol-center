@@ -93,6 +93,91 @@
     <entry name="mediaShowIdle" type="Bool">
       <default>false</default>
     </entry>
+    <entry name="language" type="String">
+      <default>en</default>
+    </entry>
+    <entry name="panelWidth" type="Int">
+      <default>420</default>
+      <min>320</min>
+      <max>640</max>
+    </entry>
+    <entry name="textLegibility" type="Bool">
+      <default>true</default>
+    </entry>
+    <entry name="cfgVersion" type="Int">
+      <default>0</default>
+    </entry>
+    <entry name="panelBorder" type="Bool">
+      <default>false</default>
+    </entry>
+    <entry name="panelBorderColor" type="String">
+      <default>#808080</default>
+    </entry>
+    <entry name="panelBorderWidth" type="Int">
+      <default>1</default>
+      <min>1</min>
+      <max>8</max>
+    </entry>
+    <entry name="panelShadow" type="Bool">
+      <default>false</default>
+    </entry>
+    <entry name="panelShadowColor" type="String">
+      <default>#000000</default>
+    </entry>
+    <entry name="btnBorder" type="Bool">
+      <default>false</default>
+    </entry>
+    <entry name="btnBorderColor" type="String">
+      <default>#808080</default>
+    </entry>
+    <entry name="btnBorderWidth" type="Int">
+      <default>1</default>
+      <min>1</min>
+      <max>8</max>
+    </entry>
+    <entry name="btnShadow" type="Bool">
+      <default>false</default>
+    </entry>
+    <entry name="btnShadowColor" type="String">
+      <default>#000000</default>
+    </entry>
+    <entry name="mediaBorder" type="Bool">
+      <default>false</default>
+    </entry>
+    <entry name="mediaBorderColor" type="String">
+      <default>#808080</default>
+    </entry>
+    <entry name="mediaBorderWidth" type="Int">
+      <default>1</default>
+      <min>1</min>
+      <max>8</max>
+    </entry>
+    <entry name="mediaShadow" type="Bool">
+      <default>false</default>
+    </entry>
+    <entry name="mediaShadowColor" type="String">
+      <default>#000000</default>
+    </entry>
+    <entry name="panelScale" type="Int">
+      <default>100</default>
+      <min>60</min>
+      <max>200</max>
+    </entry>
+    <entry name="panelShadowBlur" type="Int">
+      <default>80</default>
+      <min>0</min>
+      <max>100</max>
+    </entry>
+    <entry name="btnShadowBlur" type="Int">
+      <default>60</default>
+      <min>0</min>
+      <max>100</max>
+    </entry>
+    <entry name="mediaShadowBlur" type="Int">
+      <default>70</default>
+      <min>0</min>
+      <max>100</max>
+    </entry>
   </group>
   <group name="Layout">
     <entry name="sectionOrder" type="String">
@@ -130,6 +215,18 @@
     </entry>
     <entry name="recentColors" type="String">
       <default>[]</default>
+    </entry>
+    <entry name="airplaneSaved" type="String">
+      <default>{}</default>
+    </entry>
+    <entry name="lastWifiOn" type="Bool">
+      <default>true</default>
+    </entry>
+    <entry name="lastBtOn" type="Bool">
+      <default>true</default>
+    </entry>
+    <entry name="lastAirplane" type="Bool">
+      <default>false</default>
     </entry>
   </group>
 </kcfg>
