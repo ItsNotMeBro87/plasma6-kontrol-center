@@ -2,12 +2,12 @@
   "KPlugin": {
     "Id": "org.kontrol.center",
     "Name": "Kontrol Center",
-    "Description": "A fully configurable control center: sliders, toggles, scripts, media banner and colour picker history.",
+    "Description": "A fully configurable control center: sliders, toggles, scripts, media banner, colour picker history, and Wi-Fi, Bluetooth and sound pages inside the panel.",
     "Icon": "preferences-system",
     "Authors": [{ "Name": "ItsNotMeBro87 (Agon A.)" }],
     "Category": "System Information",
     "License": "GPL-3.0+",
-    "Version": "0.7.5 Beta",
+    "Version": "0.7.7 Beta",
     "Website": "https://github.com/ItsNotMeBro87/plasma6-kontrol-center"
   },
   "KPackageStructure": "Plasma/Applet",
